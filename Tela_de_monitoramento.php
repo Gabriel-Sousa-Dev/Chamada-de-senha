@@ -5,9 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de monitoramento</title>
+    <link rel='stylesheet' href="./assets/bulma/css/bulma.css" >
+    <link rel="stylesheet" href="./assets/fontawesome6/css/all.css">
 </head>
 <body>
-    <h1>Todos alunos</h1>
+    <section class="hero is-success is-fullheight">
+        <div class="hero-head has-text-centered mt-6">
+            <p class="title is-1 is-underlined has-text-white">Aluno encaminhado:</p>
+        </div>
+
+        <div class="hero-body box has-text-centered m-6">
+            <div class="container">
+                <p class="title is-size-1 is-capitalized has-text-white" style="font-size: 4.5rem !important">Gabriel de Sousa</p>
+                <p class="subtitle has-text-white">Professor: Leandro Costa</p>
+            </div>
+        </div>
+    </section>
+    
     <ol id="listaDinamica">
         <li>Nenhum aluno na lista</li>
     </ol>
