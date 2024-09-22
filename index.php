@@ -18,6 +18,7 @@
                 <li class="is-active"><a href="./index.php">Cadastrar aluno</a></li>
                 <li><a href="./CadastrarProfessor.php">Cadastrar Professor</a></li>
                 <li><a href="./CriarEncaminhamento.php">Criar Encaminhamento</a></li>
+                <li><a href="./EditarEncaminhamento.php">Editar Encaminhamento</a></li>
                 <li><a href="./Tela_de_monitoramento.php" target="_blank">Tela de Monitoramento</a></li>
             </ul>
         </nav>
