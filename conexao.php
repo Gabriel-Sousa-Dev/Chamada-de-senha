@@ -1,5 +1,5 @@
 <?php 
-define('BDNAME', 'cejap');
+define('BDNAME', 'telademonitoramento');
 define('ROOT', 'localhost:3306');
 define('USER', 'root');
 define('PASSWORD', '');

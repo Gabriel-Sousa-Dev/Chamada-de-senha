@@ -16,8 +16,8 @@
 
         <div class="hero-body box has-text-centered m-6">
             <div class="container">
-                <p class="title is-size-1 is-capitalized has-text-white" style="font-size: 4.5rem !important" id="NomeAluno">placeholder</p>
-                <p class="subtitle has-text-white"><strong class="has-text-white">Professor:</strong> <span id='NomeProfessor'>Leandro Costa</span></p>
+                <p class="title is-size-1 is-capitalized has-text-white" style="font-size: 4.5rem !important" id="NomeAluno">Aguarde alguns segundos...</p>
+                <p class="subtitle has-text-white"><strong class="has-text-white">Professor:</strong> <span id='NomeProfessor'>...</span></p>
             </div>
         </div>
     </section>
