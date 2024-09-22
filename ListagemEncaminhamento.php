@@ -32,30 +32,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>12</td>
-                            <td>Gabriel</td>
-                            <td>Leandro</td>
-                            <td>
-                                <button class="button is-info" title="Concluir Encaminhamento"><i class="fa-solid fa-check"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>Gabriel</td>
-                            <td>Leandro</td>
-                            <td>
-                                <button class="button is-info is-disabled" title="Encaminhamento Concluído" disabled><i class="fa-solid fa-check"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>Gabriel</td>
-                            <td>Leandro</td>
-                            <td>
-                                <button class="button is-info" title="Concluir Encaminhamento"><i class="fa-solid fa-check"></i></button>
-                            </td>
-                        </tr>
+                        <?php
+                            $query = "SELECT * FROM encaminhamentos ORDER BY id DESC";
+                            $stmt = $conexao->prepare($query);
+                            $stmt->execute();
+
+                            while($show = $stmt->fetch(PDO::FETCH_OBJ)){
+
+                                $queryAluno = "SELECT * FROM alunos WHERE id = :alunoID";
+                                $stmtAluno = $conexao->prepare($queryAluno);
+                                $stmtAluno->bindParam(':alunoID', $show->id_tb_aluno, PDO::PARAM_INT);
+                                $stmtAluno->execute();
+                                $dadosAluno = $stmtAluno->fetch(PDO::FETCH_OBJ);
+
+
+                                $queryProfessor = "SELECT * FROM professor WHERE id = :professorID";
+                                $stmtProfessor = $conexao->prepare($queryProfessor);
+                                $stmtProfessor->bindParam(':professorID', $show->id_tb_professor, PDO::PARAM_INT);
+                                $stmtProfessor->execute();
+                                $dadosProfessor = $stmtProfessor->fetch(PDO::FETCH_OBJ);
+
+                                echo "
+                                <tr>
+                                    <td>".$show->id."</td>
+                                    <td>".$dadosAluno->nome."</td>
+                                    <td>".$dadosProfessor->nome."</td>
+                                    <td>";
+                                
+                                    if(boolval($show->terminado)){
+                                        echo "<a href='./ConcluirEncaminhamento.php?id=".$show->id."' class='button is-info is-disabled' title='Encaminhamento Concluído' disabled><i class='fa-solid fa-check'></i></a>";
+                                    }elseif(!boolval($show->terminado)){
+                                        echo "<a href='./ConcluirEncaminhamento.php?id=".$show->id."' class='button is-info' title='Concluir Encaminhamento'><i class='fa-solid fa-check'></i></a>";
+                                    }else{
+                                        echo "<a href='./ConcluirEncaminhamento.php?id=".$show->id."' class='button is-danger' title='Ocorreu Algum Erro'><i class='fa-solid fa-circle-exclamation</i></a>";
+                                    }
+                                        
+                                echo "</td>
+                                </tr>
+                                ";
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
