@@ -16,7 +16,7 @@
 
         <div class="hero-body box has-text-centered m-6">
             <div class="container">
-                <p class="title is-size-1 is-capitalized has-text-white" style="font-size: 4.5rem !important" id="NomeAluno">Gabriel de Sousa</p>
+                <p class="title is-size-1 is-capitalized has-text-white" style="font-size: 4.5rem !important" id="NomeAluno">placeholder</p>
                 <p class="subtitle has-text-white"><strong class="has-text-white">Professor:</strong> <span id='NomeProfessor'>Leandro Costa</span></p>
             </div>
         </div>
@@ -41,6 +41,12 @@
                     // Essa função é executada quando há sucesso na execução do ajax
                     const dados = JSON.parse(data)
                     console.log(dados);
+
+                    if(dados.dados_aluno.nome == null || dados.dados_professor.nome == null){
+                        $('#NomeAluno').text("Nenhum aluno encaminhado!")
+                        $("#NomeProfessor").text("...")
+                        return;
+                    }
                     
                     $('#NomeAluno').text(dados.dados_aluno.nome)
                     $("#NomeProfessor").text(dados.dados_professor.nome)

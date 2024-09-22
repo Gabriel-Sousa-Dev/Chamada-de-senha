@@ -1,7 +1,7 @@
 <?php
 include_once("./conexao.php");
 
-$query = "SELECT * FROM encaminhamentos ORDER BY criado_em DESC LIMIT 1";
+$query = "SELECT * FROM encaminhamentos WHERE terminado = 0 ORDER BY criado_em ASC LIMIT 1 ";
 
 $stmt = $conexao->prepare($query);
 $stmt->execute();
