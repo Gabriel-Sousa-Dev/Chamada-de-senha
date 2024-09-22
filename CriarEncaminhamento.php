@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar aluno</title>
+    <title>Criar Encaminhamento</title>
     <link rel='stylesheet' href="./assets/bulma/css/bulma.css" >
     <link rel="stylesheet" href="./assets/fontawesome6/css/all.css">
 </head>
@@ -16,7 +16,7 @@
                     <li><a href="./index.php">Cadastrar aluno</a></li>
                     <li><a href="./CadastrarProfessor.php">Cadastrar Professor</a></li>
                     <li class="is-active"><a href="#">Criar Encaminhamento</a></li>
-                    <li><a href="./EditarEncaminhamento.php">Editar Encaminhamento</a></li>
+                    <li><a href="./ListagemEncaminhamento.php">Listagem de Encaminhamento</a></li>
                     <li><a href="./Tela_de_monitoramento.php" target="_blank">Tela de Monitoramento</a></li>
                 </ul>
             </nav>
