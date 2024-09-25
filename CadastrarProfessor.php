@@ -52,13 +52,13 @@
             <?php
                 if($_SERVER["REQUEST_METHOD"] === "POST"){
                     if(isset($_POST["NomeProfessor"]) && isset($_POST["EmailProfessor"]) && $_POST["NomeProfessor"] !== "" && $_POST["EmailProfessor"] !== ""){
-                        $query = "INSERT INTO Professor (id, nome, email) VALUE (NULL, :nome, :email)";
+                        $query = "INSERT INTO professor (id, nome, email) VALUE (NULL, :nome, :email)";
                         $stmt = $conexao->prepare($query);
-                        
+
                         $stmt->bindParam(':nome', $_POST["NomeProfessor"], PDO::PARAM_STR);
                         $stmt->bindParam(':email', $_POST["EmailProfessor"], PDO::PARAM_STR);
                         $userIsRegistered = $stmt->execute();
-    
+                    
                         if($userIsRegistered){
                             echo "
                             <article class='message is-success mt-5'>
@@ -67,6 +67,8 @@
                                 </div>
                             </article>
                             ";
+                        }else{
+                            echo 'nao';
                         }
                     }else{
                         echo "

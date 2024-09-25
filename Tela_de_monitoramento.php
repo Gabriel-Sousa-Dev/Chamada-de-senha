@@ -14,31 +14,26 @@
             <p class="title is-1 is-underlined has-text-white">Aluno encaminhado:</p>
         </div>
 
-        <div class="hero-body box has-text-centered m-6">
-            <div class="container">
+        <div class="hero-body box has-text-centered m-6 has-background-dark">
+            <div class="container ">
                 <p class="title is-size-1 is-capitalized has-text-white" style="font-size: 4.5rem !important" id="NomeAluno">Aguarde alguns segundos...</p>
                 <p class="subtitle has-text-white"><strong class="has-text-white">Professor:</strong> <span id='NomeProfessor'>...</span></p>
             </div>
         </div>
     </section>
     
-    <!-- Importação do Jquery, ele já está adicionado em nosso projeto -->
     <script src='./assets/jquery-3.7.1.min.js'></script>
     <script>
-        // SetInterval( func, time )
-        // func será executada á cada time, em milissegundos
+        const spc = window.speechSynthesis;
+        const audioPlayer = new Audio("./assets/toquezim.mpeg")
+        audioPlayer.volume = 0.5
+        let dadosAntigos = { id: 0 }
+
         setInterval( ()=>{
-            // Utilizando o ajax do Jquery
-            // ajax se trata de atualizar o dados de um site sem recerregar a página
             $.ajax({
-                url: 'alunoEncaminhado.php',
+                url: 'AlunoEncaminhado.php',
                 type: 'GET',
-                beforeSend: ()=>{
-                    // Essa função é executada antes do inicio do ajax
-                    $('h1').html('Carregando...');
-                },
-                success: data => {
-                    // Essa função é executada quando há sucesso na execução do ajax
+                success: async (data) => {
                     const dados = JSON.parse(data)
                     console.log(dados);
 
@@ -47,15 +42,29 @@
                         $("#NomeProfessor").text("...")
                         return;
                     }
+
+                    console.log(dados.id, dadosAntigos.id);
                     
+                    if(dadosAntigos.id === dados.id){
+                        return;
+                    }
+
                     $('#NomeAluno').text(dados.dados_aluno.nome)
                     $("#NomeProfessor").text(dados.dados_professor.nome)
 
+                    const texto = `O aluno ${dados.dados_aluno.nome} deve ir para o professor ${dados.dados_professor.nome}`;
+                    const spcU = new SpeechSynthesisUtterance(texto);
+                    await audioPlayer.play()
+
+                    setTimeout(()=>{
+                        spc.speak(spcU)
+
+                    }, 800)
+
+                    dadosAntigos = dados;
+
                 },
-            }).done( ()=>{
-                // Essa função é executada no fim do ajax
-                $('h1').html('Todos Alunos')
-            } )
+            })
         }, 5000 )
 
     </script>

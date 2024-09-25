@@ -80,11 +80,11 @@
                 if($_SERVER["REQUEST_METHOD"] === "POST"){
                     if(isset($_POST["aluno"]) && isset($_POST["professor"]) && $_POST["aluno"] !== "" && $_POST["professor"] !== ""){
                         $query = "INSERT INTO encaminhamentos (id, id_tb_aluno, id_tb_professor) VALUES (NULL, :id_aluno, :id_professor)";
-
+                    
                         $stmt = $conexao->prepare($query);
                         $stmt->bindParam(":id_aluno", $_POST['aluno'], PDO::PARAM_STR);
                         $stmt->bindParam(":id_professor", $_POST['professor'], PDO::PARAM_STR);
-
+                        
                         $isForwarding = $stmt->execute();
                         if ($isForwarding) {
                             echo "
@@ -94,16 +94,16 @@
                                     </div>
                                 </article>
                             ";
-                        }
-                    }else{
-                        echo "
-                            <article class='message is-danger mt-5'>
-                                <div class='message-body'>
-                                    Não foi possível realizar o encaminhamento!
-                                </div>
-                            </article>
-                        ";
+                        }else{
+                            echo "
+                                <article class='message is-danger mt-5'>
+                                    <div class='message-body'>
+                                        Não foi possível realizar o encaminhamento!
+                                    </div>
+                                </article>
+                            ";
 
+                        }
                     }
                 }
             ?>
